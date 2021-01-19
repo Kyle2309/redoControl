@@ -9,4 +9,9 @@
 #'
 #' list.redos()
 
-list.redos <- function() {for(var in ls(redo)) cat(paste0(var, ": ", redo[[var]]), sep = "\n")}
+list.redos <- function() {
+  knitr::kable(
+    data.frame(Redo.Var = ls(redo), State = unname(unlist(mget(ls(redo), envir = redo)))),
+    format = "simple"
+  )
+}
