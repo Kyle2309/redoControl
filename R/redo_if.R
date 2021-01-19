@@ -20,9 +20,31 @@
 #'
 #' x <- redo.if("chunk1", save.file = "test_file.rds", {rnorm(50)})
 
-redo.if <- function(redo.var, save.file, code) {
+redo.if <- function(redo.var, save.file, code, force = FALSE) {
   if (!grepl("\\.rds$", save.file)) {save.file <- paste0(save.file, ".rds")}
-  if (redo[[redo.var]]) {
+
+  if (force) {
+    run.anyway <- TRUE
+  } else {
+    run.anyway <- FALSE
+    affirmatives <- c("y", "yes", "Y", "YES", "Yes")
+    negatives <- c("n", "no", "N", "NO", "No")
+
+    if (!file.exists(save.file) & !redo[[redo.var]]) {
+      answer <- ""
+      while (!(answer %in% c(affirmatives, negatives))) {
+        answer <- readline(
+          paste0(redo.var, " is set to FALSE, but the save file, ", save.file, ", doesn't exist. Run code anyway? (y/n): ")
+        )
+      }
+
+      if (answer %in% affirmatives) {
+        run.anyway <- TRUE
+      }
+    }
+  }
+
+  if (redo[[redo.var]] | run.anyway) {
     result <- local(code)
     saveRDS(result, file = save.file)
   }
