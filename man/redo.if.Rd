@@ -4,7 +4,7 @@
 \alias{redo.if}
 \title{Run code if redo variable is TRUE}
 \usage{
-redo.if(redo.var, save.file, code, force = FALSE)
+redo.if(redo.var, save.file = NULL, code, force = FALSE)
 }
 \arguments{
 \item{redo.var}{The redo variable name you want to reference.}
