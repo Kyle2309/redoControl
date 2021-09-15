@@ -48,7 +48,7 @@ redo.if <- function(redo.var, save.file = NULL, code, force = FALSE) {
     }
   }
   if (redo[[redo.var]] | run.anyway) {
-    result <- local(code)
+    result <- eval(code)
     if (!is.null(save.file)) { saveRDS(result, file = save.file) }
   }
   if (!is.null(save.file)) { return(readRDS(save.file)) }
