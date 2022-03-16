@@ -11,7 +11,10 @@
 
 list.redos <- function() {
   knitr::kable(
-    data.frame(Redo.Var = ls(redo), State = unname(unlist(mget(ls(redo), envir = redo)))),
+    data.frame(
+      Redo.Var = ls(redo),
+      State = unname(unlist(mget(ls(redo), envir = redo)))
+    ),
     format = "simple"
   )
 }

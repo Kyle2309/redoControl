@@ -18,7 +18,7 @@ set.redo.true <- function(redo.vars) {
   }
 }
 
-##' @export
+#' @export
 set.redo.false <- function(redo.vars) {
   redo.vars <- as.character(redo.vars)
   for (var in redo.vars) {
