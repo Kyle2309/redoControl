@@ -11,5 +11,10 @@
 #' get.redo.sate("chunk1")
 
 get.redo.state <- function(redo.vars) {
-  unlist(mget(redo.vars, envir = redo))
+  res <- try(unlist(mget(redo.vars, envir = redo)), silent = TRUE)
+  if ("try-error" %in% class(res)) {
+    return(NULL)
+  } else {
+    return(res)
+  }
 }
