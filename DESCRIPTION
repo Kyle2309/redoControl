@@ -1,8 +1,8 @@
 Package: RedoControl
 Type: Package
 Title: Easier control for re-running code chunks.
-Version: 0.2
-Date: 2022-03-18
+Version: 0.2.1
+Date: 2022-03-28
 Author: Keaton Stagaman
 Maintainer: Keaton Stagaman <kstagaman@gmail.com>
 Description: This package contains a handful of a functions to make it easier to control whether chunks of code are re-run or previous results are read from a file.
