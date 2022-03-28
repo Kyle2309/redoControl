@@ -89,9 +89,9 @@ redo.if <- function(
         file.remove(save.file)
         cat(
           paste0(
-            "The size (",  file.mbs, " MB) of the save file:\n", save.file,
-            "\nis larger than the maximum file size of:", max.save.mb, "MB.",
-            "\n\nIt has been moved to:\n", file.path(lf.dir, file.name)
+            "The size (",  file.mbs, " MB) of the save file:\n  ", save.file,
+            "\nis larger than the maximum file size of ", max.save.mb, "MB.",
+            "\n\nIt has been moved to:\n  ", file.path(lf.dir, file.name), "\n"
           ),
           sep = "\n"
         )
