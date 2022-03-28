@@ -55,6 +55,7 @@ redo.if <- function(
             ),
             sep = "\n"
           )
+          save.file <- file.path(lf.dir, file.name)
         } else {
           answer <- ""
           while (!(answer %in% c(affirmatives, negatives))) {
@@ -81,19 +82,20 @@ redo.if <- function(
     result <- local(code)
     if (!is.null(save.file)) {
       saveRDS(result, file = save.file)
-      file.mbs <- file.size(save.file) / 1024^2
+      file.mbs <- round(file.size(save.file) / 1024^2, 2)
       if (file.mbs > max.save.mb) {
         file.name <- sapply(str_split(save.file, "/"), tail, 1)
         file.copy(from = save.file, to = file.path(lf.dir, file.name), overwrite = T)
         file.remove(save.file)
         cat(
           paste0(
-            "The size (",  file.mbs, " MB) of the save file:\n\t", save.file,
+            "The size (",  file.mbs, " MB) of the save file:\n", save.file,
             "\nis larger than the maximum file size of:", max.save.mb, "MB.",
-            "\nIt has been moved to:\n\t", file.path(lf.dir, file.name)
+            "\n\nIt has been moved to:\n", file.path(lf.dir, file.name)
           ),
           sep = "\n"
         )
+        save.file <- file.path(lf.dir, file.name)
       }
     }
   }

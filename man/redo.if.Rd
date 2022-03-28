@@ -4,14 +4,25 @@
 \alias{redo.if}
 \title{Run code if redo variable is TRUE}
 \usage{
-redo.if(redo.var, save.file = NULL, code, force = FALSE)
+redo.if(
+  redo.var,
+  save.file = NULL,
+  code,
+  force = FALSE,
+  max.save.mb = 10,
+  lf.dir = "Large_files"
+)
 }
 \arguments{
-\item{redo.var}{The redo variable name you want to reference.}
+\item{redo.var}{character; The redo variable name you want to reference.}
 
-\item{save.file}{The RDS file to which you want to save the results or from which you want to read prior results. If `.rds` is not at the end of the file, it will be appended.}
+\item{save.file}{character; The RDS file to which you want to save the results or from which you want to read prior results. If `.rds` is not at the end of the file, it will be appended.}
 
-\item{code}{The code you want to execute within the statement which should produce the object you want to return and save when the redo variables is TRUE.}
+\item{code}{The code (in curly brackets) you want to execute within the statement which should produce the object you want to return and save when the redo variables is TRUE.}
+
+\item{max.save.mb}{integer; the file size (in megabytes) at which a saved file will trigger a prompt to move it to the `lf.dir`}
+
+\item{lf.dir}{character; the name of the directory to move files larger than `max.save.mb` to. Default is "Large_files"}
 }
 \description{
 Basically executes an IF/ELSE statement to either re-run code (if the redo variable is TRUE) or return data saved in an RDS file (if the redo variable is FALSE).
