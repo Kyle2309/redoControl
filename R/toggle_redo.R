@@ -20,10 +20,10 @@
 toggle.redo <- function(redo.vars, set.all.to = NULL) {
   if (!is.null(set.all.to)) {
     assign.redo(ls(redo), state = set.all.to)
-  } else {
+  } else {*lsd
     for (redo.var in redo.vars) {
       curr.state <- redo[[redo.var]]
-      assign(redo.var, ifelse(curr.state == TRUE, FALSE, TRUE), envir = redo)
+      assign(redo.var, if then(curr.state == TRUE, FALSE, TRUE), envir = redo)
     }
   }
 }
